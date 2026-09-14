@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hey Saloni 🥰</title>
+  <title>Hey Swarnima Jaiswal 🥰</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -13,7 +13,7 @@
       .q-card h2 { font-size: 1.5rem; min-height: 3.5em; }
       textarea { font-size: 1rem; min-height: 110px; }
       .btn { padding: 0.7rem 1.8rem; font-size: 0.9rem; }
-      #cover h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+      #cover h1 { font-size: clamp(2.1rem, 8.5vw, 3.2rem); }
       #cover p { font-size: 0.92rem; }
       .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .answers-wrap { padding: 0 0.2rem; }
@@ -355,43 +355,125 @@
     .gallery-title.show { opacity: 1; }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 500px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      max-width: 440px;
       width: 100%;
       margin: 0 auto 1.5rem;
     }
     .photo-box {
       aspect-ratio: 1;
-      border-radius: 16px;
+      border-radius: 18px;
       background: linear-gradient(135deg, #ffd6e3, #ffb3c9);
-      border: 3px dashed #f7a8c4;
+      border: 2px solid rgba(232,84,122,0.3);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      color: #e8547a;
       cursor: pointer;
       overflow: hidden;
       opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.45s, transform 0.45s, box-shadow 0.25s;
+      transform: scale(0.88);
+      transition: opacity 0.45s, transform 0.45s, box-shadow 0.25s, border-color 0.25s;
       will-change: transform;
+      box-shadow: 0 4px 16px rgba(192,57,75,0.1);
     }
     .photo-box.show { opacity: 1; transform: scale(1); }
     .photo-box:hover {
-      transform: scale(1.06) rotate(1.5deg);
-      box-shadow: 0 8px 24px rgba(192,57,75,0.2);
+      transform: scale(1.04) rotate(1deg);
+      border-color: var(--rose);
+      box-shadow: 0 10px 28px rgba(192,57,75,0.22);
     }
-    .photo-box span {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.65rem;
-      color: #e8547a;
-      margin-top: 0.4rem;
-      opacity: 0.7;
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
     }
-    .photo-box img { width:100%; height:100%; object-fit:cover; }
+    .photo-box:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 10, 20, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox-modal img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 20px;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+      transform: scale(0.85);
+      transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+      object-fit: contain;
+    }
+    .lightbox-modal.active img {
+      transform: scale(1);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.8rem;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      transition: transform 0.2s;
+      z-index: 1001;
+    }
+    .lightbox-close:hover {
+      transform: scale(1.2);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.4rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background 0.2s, transform 0.2s;
+      z-index: 1001;
+      user-select: none;
+    }
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: 1.5rem; }
+    @media (max-width: 600px) {
+      .lightbox-prev { left: 0.6rem; width: 40px; height: 40px; font-size: 1.2rem; }
+      .lightbox-next { right: 0.6rem; width: 40px; height: 40px; font-size: 1.2rem; }
+      .lightbox-close { top: 1rem; right: 1.2rem; }
+    }
 
     .end-note {
       font-family: 'Caveat', cursive;
@@ -420,7 +502,7 @@
   <!-- Cover -->
   <div class="page visible" id="cover">
     <div class="cover-emoji" id="coverEmoji">🌸</div>
-    <h1>Hey Saloni,<br>this one's for you</h1>
+    <h1>Hey Swarnima Jaiswal,<br>this one's for you</h1>
     <p>Just a few little questions, answered by you, saved forever by me. 💌</p>
     <button class="btn" id="startBtn" onclick="startQuiz()">Start →</button>
   </div>
@@ -446,12 +528,24 @@
     <div class="answers-wrap" id="answersList"></div>
     <div class="gallery-title" id="galleryTitle">Areyy , Meri Jaan ki kuch Tasveerein💘💕📷</div>
     <div class="gallery" id="gallery">
-      <div class="photo-box"><img src="Snapchat-1194334090~2.jpg" alt="us"></div>
-      <div class="photo-box"><img src="Snapchat-1622108229~2.jpg" alt="us"></div>
-      <div class="photo-box"><img src="Snapchat-1273121946~2.jpg" alt="us"></div>
-      <div class="photo-box"><img src="Snapchat-1905485536.jpg" alt="saloni"></div>
-      <div class="photo-box"><img src="Snapchat-2066988521.jpg" alt="us"></div>
-      <div class="photo-box"><img src="SALONI4-removebg-preview.png" alt="us"></div>
+      <div class="photo-box" onclick="openLightbox(this)" title="Tap to view">
+        <img src="WhatsApp Image 2026-09-14 at 2.29.27 PM.jpeg" alt="Swarnima Jaiswal">
+      </div>
+      <div class="photo-box" onclick="openLightbox(this)" title="Tap to view">
+        <img src="WhatsApp Image 2026-09-14 at 2.30.16 PM.jpeg" alt="Swarnima Jaiswal">
+      </div>
+      <div class="photo-box" onclick="openLightbox(this)" title="Tap to view">
+        <img src="WhatsApp Image 2026-09-14 at 2.35.36 PM.jpeg" alt="Swarnima Jaiswal">
+      </div>
+      <div class="photo-box" onclick="openLightbox(this)" title="Tap to view">
+        <img src="WhatsApp Image 2026-09-14 at 2.38.18 PM.jpeg" alt="Swarnima Jaiswal">
+      </div>
+      <div class="photo-box" onclick="openLightbox(this)" title="Tap to view">
+        <img src="WhatsApp Image 2026-09-14 at 2.38.18 PMnn.jpeg" alt="Swarnima Jaiswal">
+      </div>
+      <div class="photo-box" onclick="openLightbox(this)" title="Tap to view">
+        <img src="WhatsApp Image 2026-09-14 at 2.38.19 PM.jpeg" alt="Swarnima Jaiswal">
+      </div>
     </div>
     <p class="end-note" id="endNote">I hope u like it , Loveeee uuu so muchhhhh 💕🎀</p>
   </div>
@@ -773,7 +867,7 @@ function animateFinal() {
   });
 
   // End note
-  setTimeout(() => document.getElementById('endNote').classList.add('show'), 2000);
+  setTimeout(() => document.getElementById('endNote').classList.add('show'), 2100);
 }
 
 /* ═══════════════════════════════════════════════
@@ -935,12 +1029,12 @@ function runConfetti() {
   .music-fab:hover .music-label { opacity: 1; transform: translateX(0); }
 </style>
 
-<audio id="bgAudio" src="fakira.mp3" loop preload="auto"></audio>
+<audio id="bgAudio" src="Tere Paas Main_Main Vaapas Aaunga_@diljitdosanjh,@ARRahman,Imtiaz Ali,Irshad,Vedang,Sharvari,Deepali.mp3" loop preload="auto"></audio>
 
 <div class="music-fab">
   <div class="music-card" id="musicCard">
-    <div class="music-card-title">Fakira 🌸</div>
-    <div class="music-card-sub">Student Of The Year 2</div>
+    <div class="music-card-title">Tere Paas Main 🌸</div>
+    <div class="music-card-sub">Main Vaapas Aaunga • Diljit Dosanjh</div>
     <div class="music-progress-wrap" id="progressWrap">
       <div class="music-progress-bar" id="progressBar"></div>
     </div>
@@ -957,6 +1051,14 @@ function runConfetti() {
     </button>
     <span class="music-label">our song 💕</span>
   </div>
+</div>
+
+<!-- Image Lightbox Modal -->
+<div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <button class="lightbox-nav lightbox-prev" onclick="prevLightbox(event)" title="Previous photo">&#10094;</button>
+  <img id="lightboxImg" src="" alt="Enlarged photo" onclick="event.stopPropagation()">
+  <button class="lightbox-nav lightbox-next" onclick="nextLightbox(event)" title="Next photo">&#10095;</button>
 </div>
 
 <script>
@@ -1005,6 +1107,57 @@ function runConfetti() {
   document.getElementById('progressWrap').addEventListener('click', e => {
     const r = e.currentTarget.getBoundingClientRect();
     audio.currentTime = ((e.clientX - r.left) / r.width) * (audio.duration || 0);
+  });
+
+  // Lightbox functions
+  let galleryPhotos = [];
+  let currentPhotoIdx = 0;
+
+  function updateGalleryPhotos() {
+    galleryPhotos = Array.from(document.querySelectorAll('.photo-box img')).map(img => img.getAttribute('src'));
+  }
+
+  function openLightbox(box) {
+    updateGalleryPhotos();
+    const img = box.querySelector('img');
+    if (!img) return;
+    const src = img.getAttribute('src');
+    currentPhotoIdx = galleryPhotos.indexOf(src);
+    if (currentPhotoIdx === -1) currentPhotoIdx = 0;
+    renderLightboxPhoto();
+    document.getElementById('lightboxModal').classList.add('active');
+  }
+
+  function renderLightboxPhoto() {
+    if (!galleryPhotos.length) return;
+    document.getElementById('lightboxImg').src = galleryPhotos[currentPhotoIdx];
+  }
+
+  function prevLightbox(e) {
+    if (e) e.stopPropagation();
+    if (!galleryPhotos.length) return;
+    currentPhotoIdx = (currentPhotoIdx - 1 + galleryPhotos.length) % galleryPhotos.length;
+    renderLightboxPhoto();
+  }
+
+  function nextLightbox(e) {
+    if (e) e.stopPropagation();
+    if (!galleryPhotos.length) return;
+    currentPhotoIdx = (currentPhotoIdx + 1) % galleryPhotos.length;
+    renderLightboxPhoto();
+  }
+
+  function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  document.addEventListener('keydown', e => {
+    const modal = document.getElementById('lightboxModal');
+    if (!modal || !modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') prevLightbox();
+    else if (e.key === 'ArrowRight') nextLightbox();
   });
 </script>
 
